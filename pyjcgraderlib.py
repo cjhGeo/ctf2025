@@ -6,16 +6,13 @@ grader_url = "http://52.184.80.178:5001/grade"
 # Submit the file
 def grade(file_path="predictions.csv"):
   with open(file_path, "rb") as f:
-      files = {"submission": (file_path, f)}
+      files = {"file": (file_path, f)}
       response = requests.post(grader_url, files=files)
   
   # Handle response
   if response.ok:
       result = response.json()
-      print("Success:", result.get("success"))
-      print("Score:", result.get("score"))
-      print("Flag:", result.get("flag"))
-      print("Control:", result.get("e"))
+      print(response.text)
   else:
       print("Submission failed:", response.text)
 
@@ -23,4 +20,4 @@ def grade(file_path="predictions.csv"):
 # USAGE
 #
 # import pyjcgraderlib as ctfgrader
-# grader = ctfgrader.grade("PATH_TO_FILE")
+# ctfgrader.grade("PATH_TO_FILE")
