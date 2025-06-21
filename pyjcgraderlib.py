@@ -12,6 +12,7 @@ def grade(file_path="predictions.csv"):
   # Handle response
   if response.ok:
       result = response.json()
+      print("Success:", result.get("success"))
       print("Score:", result.get("score"))
       print("Flag:", result.get("flag"))
       print("Control:", result.get("e"))
