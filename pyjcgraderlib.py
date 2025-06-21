@@ -4,7 +4,7 @@ import requests
 grader_url = "http://grader-server-ip:5001/grade/challenge1"
 
 # Submit the file
-grade(file_path="predictions.csv"):
+def grade(file_path="predictions.csv"):
   with open(file_path, "rb") as f:
       files = {"submission": (file_path, f)}
       response = requests.post(grader_url, files=files)
