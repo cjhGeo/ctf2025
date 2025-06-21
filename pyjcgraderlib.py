@@ -1,7 +1,7 @@
 import requests
 
 # Grader endpoint URL
-grader_url = "http://grader-server-ip:5001/grade/challenge1"
+grader_url = "http://52.184.80.178:5001/grade"
 
 # Submit the file
 def grade(file_path="predictions.csv"):
