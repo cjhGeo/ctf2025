@@ -1,20 +1,24 @@
-import requests as _requests
-from hashlib import blake2s as _blake2s
-from time import time as _time
+import requests
 
-class DSGraderClient:
-  def __init__(self, endpoint):
-    self._endpoint = endpoint
-    print("DSGraderClient:", _requests.get(self._endpoint+'ping').text)
+# Grader endpoint URL
+grader_url = "http://grader-server-ip:5001/grade/challenge1"
 
-  def submitFile(self, file):
-    try:
-      return _requests.post(self._endpoint+'submission', files={'uploadedFile':open(file, 'rb')}).text
-    except:
-      print('Error submitting file')
+# Submit the file
+grade(file_path="predictions.csv"):
+  with open(file_path, "rb") as f:
+      files = {"submission": (file_path, f)}
+      response = requests.post(grader_url, files=files)
+  
+  # Handle response
+  if response.ok:
+      result = response.json()
+      print("Score:", result.get("score"))
+      print("Flag:", result.get("flag"))
+  else:
+      print("Submission failed:", response.text)
+
 
 # USAGE
 #
 # import pyjcgraderlib as ctfgrader
-# grader = ctfgrader.DSGraderClient("GRADER_URL")
-# grader.submitFile("PATH_TO_FILE")
+# grader = ctfgrader.grade("PATH_TO_FILE")
